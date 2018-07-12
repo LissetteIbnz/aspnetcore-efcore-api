@@ -3,13 +3,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using SchoolManager.Persistence;
 using SchoolManager.Service;
+using SchoolManager.Service.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 
-namespace API
+namespace SchoolManager.API
 {
     public class Startup
     {
@@ -23,9 +26,16 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("SQLExpress");
-            services.AddDbContext<SchoolContext>(options => options.UseSqlServer(connection));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
+
+            services.AddScoped<ILogger, Logger<SchoolManagerService>>();
+            services.AddScoped<ISchoolManagerService, SchoolManagerService>();
 
             services.AddCors(options =>
             {
@@ -49,7 +59,7 @@ namespace API
                 });
 
                 var basePath = AppContext.BaseDirectory;
-                var xmlPath = Path.Combine(basePath, "API.xml");
+                var xmlPath = Path.Combine(basePath, "SchoolManager.API.xml");
                 c.IncludeXmlComments(xmlPath);
             });
 
@@ -64,9 +74,13 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+            // Enable politics created about AddCors
             app.UseCors("AllowSpecificOrigin");
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");

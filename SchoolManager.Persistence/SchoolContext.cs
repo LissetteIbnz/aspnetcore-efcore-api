@@ -10,13 +10,13 @@ namespace SchoolManager.Persistence
         {
         }
 
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<Course> Course { get; set; }
         public DbSet<Enrollment> Enrollment { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Instructor> Instructors { get; set; }
-        public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
-        public DbSet<CourseAssignment> CourseAssignments { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Instructor> Instructor  { get; set; }
+        public DbSet<OfficeAssignment> OfficeAssignment { get; set; }
+        public DbSet<CourseAssignment> CourseAssignment { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //    => optionsBuilder
@@ -25,12 +25,16 @@ namespace SchoolManager.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new StudentConfiguration());
-            //modelBuilder.Entity<Enrollment>()
-            //    .HasKey(e => new { e.CourseID, e.StudentID });
-            //modelBuilder.Entity<CourseAssignment>()
-            //    .HasKey(c => new { c.CourseID, c.InstructorID });
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .ApplyConfiguration(new CourseAssignmentConfiguration())
+                .ApplyConfiguration(new CourseConfiguration())
+                .ApplyConfiguration(new DepartmentConfiguration())
+                .ApplyConfiguration(new EnrollmentConfiguration())
+                .ApplyConfiguration(new InstructorConfiguration())
+                .ApplyConfiguration(new OfficeAssignmentsConfiguration())
+                .ApplyConfiguration(new StudentConfiguration());
         }
     }
 }

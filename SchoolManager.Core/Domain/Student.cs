@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace SchoolManager.Core.Domain
 {
@@ -11,6 +11,6 @@ namespace SchoolManager.Core.Domain
 
         public string FullName => $"{LastName} , {FirstName}";
 
-        public virtual Collection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

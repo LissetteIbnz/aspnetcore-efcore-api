@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace SchoolManager.Core.Domain
 {
@@ -8,12 +8,11 @@ namespace SchoolManager.Core.Domain
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public DateTime HireDate { get; set; }
-        public string FullName
-        {
-            get { return LastName + ", " + FirstName; }
-        }
 
-        public OfficeAssignment OfficeAssignmentFk { get; set; }
-        public virtual Collection<CourseAssignment> CourseAssignments { get; set; }
+        public string FullName => LastName + ", " + FirstName;
+
+        public OfficeAssignment OfficeAssignment { get; set; }
+
+        public ICollection<CourseAssignment> CourseAssignments { get; set; }
     }
 }

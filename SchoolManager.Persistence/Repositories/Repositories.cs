@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SchoolManager.Persistence.Repositories
 {
@@ -19,9 +20,9 @@ namespace SchoolManager.Persistence.Repositories
             _entities = Context.Set<TEntity>();
         }
 
-        public TEntity Get(int id)
+        public async Task<TEntity> Get(int id)
         {
-            return _entities.Find(id);
+            return await _entities.FindAsync(id);
         }
 
         public IEnumerable<TEntity> GetAll()

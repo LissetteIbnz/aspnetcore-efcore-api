@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SchoolManager.Core.Domain
+﻿namespace SchoolManager.Core.Domain
 {
     public class OfficeAssignment
     {

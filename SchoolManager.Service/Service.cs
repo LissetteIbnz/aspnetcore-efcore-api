@@ -1,33 +1,25 @@
-﻿using SchoolManager.Core.Repositories;
+﻿using Microsoft.Extensions.Logging;
 using SchoolManager.Persistence;
-using SchoolManager.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SchoolManager.Service
 {
-    public class Service : IUnitOfWork
+    public abstract class Service : IService
     {
-        private readonly SchoolContext _context;
+        protected ILogger Logger;
+        protected bool Disposed;
+        protected readonly SchoolContext DbContext;
+        protected IUnitOfWork m_unitOfWork;
 
-        private IStudentRepository students = null;
-
-        public Service(SchoolContext context)
+        public Service(ILogger logger, SchoolContext dbContext)
         {
-            _context = context;
+            Logger = logger;
+            DbContext = dbContext;
+            
         }
 
-        public IStudentRepository Students => students ?? (students = new StudentRepository(_context));
-
-        public int Complete()
-        {
-            return _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
+        protected IUnitOfWork UnitOfWork
+            => m_unitOfWork ?? (m_unitOfWork = new UnitOfWork(DbContext));
     }
+
+    public interface IService { }
 }

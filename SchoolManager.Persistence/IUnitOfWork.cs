@@ -1,7 +1,7 @@
 ﻿using SchoolManager.Core.Repositories;
 using System;
 
-namespace SchoolManager.Service
+namespace SchoolManager.Persistence
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -1,11 +1,10 @@
 ﻿using SchoolManager.Core.Repositories;
-using SchoolManager.Persistence;
 using SchoolManager.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManager.Service
+namespace SchoolManager.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {

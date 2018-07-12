@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace SchoolManager.Core.Domain
 {
@@ -12,6 +12,7 @@ namespace SchoolManager.Core.Domain
         public int? InstructorID { get; set; }
 
         public Instructor AdministratorFk { get; set; }
-        public virtual Collection<Course> Courses { get; set; }
+
+        public ICollection<Course> Courses { get; set; }
     }
 }

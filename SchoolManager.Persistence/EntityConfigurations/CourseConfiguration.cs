@@ -22,7 +22,8 @@ namespace SchoolManager.Persistence.EntityConfigurations
             builder
                 .HasOne(p => p.DepartmentFk)
                 .WithMany(b => b.Courses)
-                .HasForeignKey(p => p.DepartmentID);
+                .HasForeignKey(p => p.DepartmentID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

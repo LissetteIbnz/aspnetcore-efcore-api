@@ -14,12 +14,12 @@ namespace SchoolManager.Persistence.Repositories
 
         public Student GetStudentWithCourses(int id)
         {
-            return SchoolContext.Students.Include(s => s.Enrollments).SingleOrDefault(s => s.ID == id);
+            return SchoolContext.Student.Include(s => s.Enrollments).SingleOrDefault(s => s.ID == id);
         }
 
         public IEnumerable<Student> GetStudentsWithCourse(int pageIndex, int pageSize)
         {
-            return SchoolContext.Students
+            return SchoolContext.Student
                 .Include(s => s.Enrollments)
                 .OrderBy(s => s.LastName)
                 .Skip((pageIndex - 1) * pageSize)
@@ -29,7 +29,7 @@ namespace SchoolManager.Persistence.Repositories
 
         public IEnumerable<Student> GetTopStudents(int count)
         {
-            return SchoolContext.Students
+            return SchoolContext.Student
                 .Include(s => s.Enrollments)
                 .Where(s => s.Enrollments.Any())
                 .OrderByDescending(s => s.Enrollments.OrderByDescending(e => e.Grade))
