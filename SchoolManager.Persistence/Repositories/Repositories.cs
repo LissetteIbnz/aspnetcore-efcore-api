@@ -25,29 +25,29 @@ namespace SchoolManager.Persistence.Repositories
             return await _entities.FindAsync(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return _entities.ToList();
+            return await _entities.ToListAsync();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return _entities.Where(predicate);
+            return await _entities.Where(predicate).ToListAsync();
         }
 
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            return _entities.SingleOrDefault(predicate);
+            return await _entities.SingleOrDefaultAsync(predicate);
         }
 
-        public void Add(TEntity entity)
+        public async Task Add(TEntity entity)
         {
-            _entities.Add(entity);
+            await _entities.AddAsync(entity);
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        public async Task AddRange(IEnumerable<TEntity> entities)
         {
-            _entities.AddRange(entities);
+            await _entities.AddRangeAsync(entities);
         }
 
         public void Remove(TEntity entity)

@@ -3,6 +3,7 @@ using SchoolManager.Core.Domain;
 using SchoolManager.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SchoolManager.Persistence.Repositories
 {
@@ -12,9 +13,9 @@ namespace SchoolManager.Persistence.Repositories
         {
         }
 
-        public Student GetStudentWithCourses(int id)
+        public async Task<Student> GetStudentWithCourses(int id)
         {
-            return SchoolContext.Student.Include(s => s.Enrollments).SingleOrDefault(s => s.ID == id);
+            return await SchoolContext.Student.Include(s => s.Enrollments).FirstOrDefaultAsync(s => s.ID == id);
         }
 
         public IEnumerable<Student> GetStudentsWithCourse(int pageIndex, int pageSize)
