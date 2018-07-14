@@ -18,24 +18,24 @@ namespace SchoolManager.Persistence.Repositories
             return await SchoolContext.Student.Include(s => s.Enrollments).FirstOrDefaultAsync(s => s.ID == id);
         }
 
-        public IEnumerable<Student> GetStudentsWithCourse(int pageIndex, int pageSize)
+        public async Task<IEnumerable<Student>> GetStudentsWithCourse(int pageIndex, int pageSize)
         {
-            return SchoolContext.Student
+            return await SchoolContext.Student
                 .Include(s => s.Enrollments)
                 .OrderBy(s => s.LastName)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)
-                .ToList();
-        }
+                .ToListAsync();
+        }   
 
-        public IEnumerable<Student> GetTopStudents(int count)
+        public async Task<IEnumerable<Student>> GetTopStudents(int count)
         {
-            return SchoolContext.Student
+            return await SchoolContext.Student
                 .Include(s => s.Enrollments)
                 .Where(s => s.Enrollments.Any())
                 .OrderByDescending(s => s.Enrollments.OrderByDescending(e => e.Grade))
                 .Take(count)
-                .ToList();
+                .ToListAsync();
         }
 
         public SchoolContext SchoolContext
