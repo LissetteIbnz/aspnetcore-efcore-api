@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Responses\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SchoolManager.Core\SchoolManager.Core.csproj" />
     <ProjectReference Include="..\SchoolManager.Persistence\SchoolManager.Persistence.csproj" />
   </ItemGroup>

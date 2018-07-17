@@ -25,6 +25,7 @@ namespace SchoolManager.Persistence.Repositories
                 .OrderBy(s => s.LastName)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)
+                .AsNoTracking()
                 .ToListAsync();
         }   
 

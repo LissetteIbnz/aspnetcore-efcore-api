@@ -19,15 +19,21 @@ namespace SchoolManager.API.Controllers
             SchoolManagerService = schoolManagerService;
         }
 
-        [HttpGet("Student")]
+        [HttpGet("Get")]
+        public async Task<IActionResult> GetStudentsAsync()
+        {
+            Logger?.LogDebug("{0} has been invoked", nameof(GetStudentsAsync));
+            var response = await SchoolManagerService.GetStudentsAsync();
+
+            return response.ToHttpResponse();
+        }
+
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetStudentAsync(int id)
         {
             Logger?.LogDebug("{0} has been invoked", nameof(GetStudentAsync));
-
-            // Get response from business logic
             var response = await SchoolManagerService.GetStudentAsync(id);
 
-            // Return as http response
             return response.ToHttpResponse();
         }
     }

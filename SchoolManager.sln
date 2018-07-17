@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManager.Persistence",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManager.Service", "SchoolManager.Service\SchoolManager.Service.csproj", "{BE25A16B-8774-4F56-A72F-629330950E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManager.API", "SchoolManager.API\SchoolManager.API.csproj", "{20FC7B22-353C-4F30-A297-49CDF4AA3283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManager.API", "SchoolManager.API\SchoolManager.API.csproj", "{20FC7B22-353C-4F30-A297-49CDF4AA3283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManager.Common", "SchoolManager.Common\SchoolManager.Common.csproj", "{A6ABBFA4-CE3E-4ACD-A360-718B71DE3947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManager.Common", "SchoolManager.Common\SchoolManager.Common.csproj", "{A6ABBFA4-CE3E-4ACD-A360-718B71DE3947}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
