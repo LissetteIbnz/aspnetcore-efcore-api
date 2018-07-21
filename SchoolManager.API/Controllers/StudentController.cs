@@ -28,6 +28,15 @@ namespace SchoolManager.API.Controllers
             return response.ToHttpResponse();
         }
 
+        [HttpGet("GetWithCourses")]
+        public async Task<IActionResult> GetStudentsWithCoursesAsync()
+        {
+            Logger?.LogDebug("{0} has been invoked", nameof(GetStudentsWithCoursesAsync));
+            var response = await SchoolManagerService.GetStudentsWithCoursesAsync();
+
+            return response.ToHttpResponse();
+        }
+
         [HttpGet("GetById")]
         public async Task<IActionResult> GetStudentAsync(int id)
         {

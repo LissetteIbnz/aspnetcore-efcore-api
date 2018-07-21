@@ -1,6 +1,6 @@
 ﻿namespace SchoolManager.Core.Domain
 {
-    public class CourseAssignment
+    public class CourseAssignment : AuditableEntity
     {
         public int InstructorID { get; set; }
         public int CourseID { get; set; }

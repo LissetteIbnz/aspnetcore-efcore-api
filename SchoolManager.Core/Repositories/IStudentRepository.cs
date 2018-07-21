@@ -8,6 +8,6 @@ namespace SchoolManager.Core.Repositories
     {
         Task<Student> GetStudentWithCourses(int id);
         Task<IEnumerable<Student>> GetTopStudents(int count);
-        Task<IEnumerable<Student>> GetStudentsWithCourse(int pageIndex = 1, int pageSize = 10);
+        Task<IEnumerable<Student>> GetStudentsWithCourses(int pageIndex = 1, int pageSize = 10);
     }
 }

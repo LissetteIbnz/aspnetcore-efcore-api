@@ -7,6 +7,7 @@ namespace SchoolManager.Service.Responses
         public string Message { get; set; }
         public bool DidError { get; set; }
         public string ErrorMessage { get; set; }
+
         public IEnumerable<TModel> Model { get; set; }
     }
 }

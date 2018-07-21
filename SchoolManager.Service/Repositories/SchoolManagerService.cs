@@ -32,6 +32,24 @@ namespace SchoolManager.Service.Repositories
             return response;
         }
 
+        public async Task<IListResponse<Student>> GetStudentsWithCoursesAsync()
+        {
+            Logger?.LogDebug("{0} has been invoked", nameof(GetStudentsWithCoursesAsync));
+
+            var response = new ListResponse<Student>();
+
+            try
+            {
+                response.Model = await UnitOfWork.Students.GetStudentsWithCourses();
+            }
+            catch (Exception ex)
+            {
+                response.SetError(ex, Logger);
+            }
+
+            return response;
+        }
+
         public async Task<ISingleResponse<Student>> GetStudentAsync(int id)
         {
             Logger?.LogDebug("{0} has been invoked", nameof(GetStudentAsync));

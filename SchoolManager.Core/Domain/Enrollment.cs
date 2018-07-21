@@ -7,7 +7,7 @@ namespace SchoolManager.Core.Domain
         A, B, C, D, F
     }
 
-    public class Enrollment : BaseEntity
+    public class Enrollment : AuditableEntity
     {
         public int CourseID { get; set; }
         public int StudentID { get; set; }

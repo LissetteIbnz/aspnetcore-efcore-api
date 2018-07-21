@@ -5,7 +5,7 @@ namespace SchoolManager.Common
 {
     public static class LogHelper
     {
-        public static ILogger<TEntity> GetLogger<TEntity>()
+        public static ILogger<T> GetLogger<T>()
         {
             var serviceProvider = new ServiceCollection()
                 .AddLogging()
@@ -20,7 +20,7 @@ namespace SchoolManager.Common
                 .AddConsole(LogLevel.Critical)
                 .AddConsole(LogLevel.Error);
 
-            return serviceProvider.GetService<ILoggerFactory>().CreateLogger<TEntity>();
+            return serviceProvider.GetService<ILoggerFactory>().CreateLogger<T>();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SchoolManager.Core.Domain
         public string FirstName { get; set; }
         public DateTime EnrollmentDate { get; set; }
 
-        public string FullName => $"{LastName} , {FirstName}";
+        public string FullName => $"{LastName}, {FirstName}";
 
         public ICollection<Enrollment> Enrollments { get; set; }
     }

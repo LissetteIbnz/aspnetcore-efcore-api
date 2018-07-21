@@ -13,4 +13,9 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolManager.API\SchoolManager.API.csproj" />
+    <ProjectReference Include="..\SchoolManager.Common\SchoolManager.Common.csproj" />
+  </ItemGroup>
+
 </Project>

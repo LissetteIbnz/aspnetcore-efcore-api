@@ -232,7 +232,7 @@ namespace SchoolManager.Persistence
                 Grade = Grade.B
                 }
             };
-
+            
             foreach (Enrollment e in enrollments)
             {
                 var enrollmentInDataBase = context.Enrollment.Where(

@@ -18,7 +18,7 @@ namespace SchoolManager.Persistence.Repositories
             return await SchoolContext.Student.Include(s => s.Enrollments).FirstOrDefaultAsync(s => s.ID == id);
         }
 
-        public async Task<IEnumerable<Student>> GetStudentsWithCourse(int pageIndex, int pageSize)
+        public async Task<IEnumerable<Student>> GetStudentsWithCourses(int pageIndex, int pageSize)
         {
             return await SchoolContext.Student
                 .Include(s => s.Enrollments)

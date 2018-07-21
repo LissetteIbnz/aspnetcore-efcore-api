@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManager.Core.Domain;
 using SchoolManager.Persistence.EntityConfigurations;
+using System;
 
 namespace SchoolManager.Persistence
 {
@@ -14,7 +15,7 @@ namespace SchoolManager.Persistence
         public DbSet<Enrollment> Enrollment { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Department> Department { get; set; }
-        public DbSet<Instructor> Instructor  { get; set; }
+        public DbSet<Instructor> Instructor { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignment { get; set; }
         public DbSet<CourseAssignment> CourseAssignment { get; set; }
 
@@ -35,6 +36,25 @@ namespace SchoolManager.Persistence
                 .ApplyConfiguration(new InstructorConfiguration())
                 .ApplyConfiguration(new OfficeAssignmentsConfiguration())
                 .ApplyConfiguration(new StudentConfiguration());
+        }
+
+        public override int SaveChanges()
+        {
+            ChangeTracker.DetectChanges();
+
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("CreationDateTime").CurrentValue = DateTime.UtcNow;
+                    entry.Property("LastUpdateDateTime").CurrentValue = DateTime.UtcNow;
+                }
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("LastUpdateDateTime").CurrentValue = DateTime.UtcNow;
+                }
+            }
+            return base.SaveChanges();
         }
     }
 }

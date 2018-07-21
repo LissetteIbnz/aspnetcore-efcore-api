@@ -1,12 +1,8 @@
-﻿using System;
-
-namespace SchoolManager.Core.Domain
+﻿namespace SchoolManager.Core.Domain
 {
-    public class BaseEntity
+    public class BaseEntity : AuditableEntity
     {
         public int ID { get; set; }
         public bool Deactivated { get; set; }
-        public DateTime? CreationDateTime { get; set; }
-        public DateTime? LastUpdateDateTime { get; set; }
     }
 }

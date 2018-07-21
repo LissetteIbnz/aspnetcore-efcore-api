@@ -4,12 +4,6 @@ namespace SchoolManager.Core.Domain
 {
     public class Course : BaseEntity
     {
-        //public Course()
-        //{
-        //}
-
-        //public Course(int id) => ID = id;
-
         public string Title { get; set; }
         public int Credits { get; set; }
 

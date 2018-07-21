@@ -8,6 +8,7 @@ namespace SchoolManager.Service
     public interface ISchoolManagerService : IService
     {
         Task<IListResponse<Student>> GetStudentsAsync();
+        Task<IListResponse<Student>> GetStudentsWithCoursesAsync();
         Task<ISingleResponse<Student>> GetStudentAsync(int id);
 
         Task<ISingleResponse<Student>> AddStudentAsync(Student model);

@@ -9,9 +9,7 @@ namespace SchoolManager.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Enrollment> builder)
         {
             builder.ToTable("Enrollment");
-            builder.HasKey(s => s.ID);
-            builder.Property(s => s.ID).UseSqlServerIdentityColumn();
-            builder.Property(s => s.ID).HasColumnType("int").IsRequired();
+            builder.HasKey(s => new { s.StudentID, s.CourseID });
             builder.HasOne(e => e.CourseFk)
                 .WithMany(b => b.Enrollments)
                 .HasForeignKey(e => e.CourseID)
