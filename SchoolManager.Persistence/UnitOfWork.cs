@@ -1,8 +1,5 @@
 ﻿using SchoolManager.Core.Repositories;
 using SchoolManager.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SchoolManager.Persistence
 {
@@ -10,14 +7,14 @@ namespace SchoolManager.Persistence
     {
         private readonly SchoolContext _context;
 
-        private IStudentRepository students = null;
+        private IStudentRepository _students;
 
         public UnitOfWork(SchoolContext context)
         {
             _context = context;
         }
 
-        public IStudentRepository Students => students ?? (students = new StudentRepository(_context));
+        public IStudentRepository Students => _students ?? (_students = new StudentRepository(_context));
 
         public int Complete()
         {

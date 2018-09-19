@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using SchoolManager.Core.Domain;
 using SchoolManager.Persistence.EntityConfigurations;
-using System;
 
 namespace SchoolManager.Persistence
 {

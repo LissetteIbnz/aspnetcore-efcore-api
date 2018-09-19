@@ -19,16 +19,12 @@ namespace SchoolManager.API.Controllers
             _schoolManagerService = schoolManagerService;
         }
 
-        /// <summary>
-        /// Retrieve all students (async)
-        /// </summary>
-        /// <returns>A list of students</returns>
         [HttpGet("Get")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetStudentsAsync(int? pageSize = 10, int? pageNumber = 1)
         {
-            _logger?.LogInformation("{0} has been invoked", nameof(GetStudentsAsync));
+            _logger?.LogDebug("{0} has been invoked", nameof(GetStudentsAsync));
             var response = await _schoolManagerService.GetStudentsAsync();
 
             return response.ToHttpResponse();

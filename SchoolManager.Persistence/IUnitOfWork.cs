@@ -1,5 +1,5 @@
-﻿using SchoolManager.Core.Repositories;
-using System;
+﻿using System;
+using SchoolManager.Core.Repositories;
 
 namespace SchoolManager.Persistence
 {
