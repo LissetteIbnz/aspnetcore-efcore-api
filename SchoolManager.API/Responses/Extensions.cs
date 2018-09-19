@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManager.Service.Responses;
-using System.Net;
 
-namespace SchoolManager.API.Extensions
+namespace SchoolManager.API.Responses
 {
     public static class Extensions
     {

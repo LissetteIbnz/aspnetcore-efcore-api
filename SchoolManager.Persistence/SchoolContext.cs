@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SchoolManager.Core.Domain;
 using SchoolManager.Persistence.EntityConfigurations;
 using System;
@@ -18,11 +18,6 @@ namespace SchoolManager.Persistence
         public DbSet<Instructor> Instructor { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignment { get; set; }
         public DbSet<CourseAssignment> CourseAssignment { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //    => optionsBuilder
-        //        .UseLazyLoadingProxies();
-        //        //.UseSqlServer(connectionString);
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

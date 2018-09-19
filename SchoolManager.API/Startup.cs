@@ -35,6 +35,7 @@ namespace SchoolManager.API
                 options.UseSqlServer(Configuration["AppSettings:ConnectionString"]));
 
             services.AddScoped<ILogger, Logger<SchoolManagerService>>();
+
             services.AddScoped<ISchoolManagerService, SchoolManagerService>();
 
             services.AddCors(options =>
@@ -70,7 +71,7 @@ namespace SchoolManager.API
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
+            {                
                 app.UseDeveloperExceptionPage();
             }
 
