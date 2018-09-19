@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SchoolManager.Core.Domain;
 using SchoolManager.Persistence.EntityConfigurations;
 using System;

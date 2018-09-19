@@ -1,29 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SchoolManager.API.Extensions;
 using SchoolManager.Service;
 using System.Threading.Tasks;
+using SchoolManager.API.Responses;
 
 namespace SchoolManager.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Student")]
+    [Route("api/[controller]")]
     public class StudentController : Controller
     {
-        protected ILogger Logger;
-        private readonly ISchoolManagerService SchoolManagerService;
+        private readonly ILogger _logger;
+        private readonly ISchoolManagerService _schoolManagerService;
 
         public StudentController(ILogger<StudentController> logger, ISchoolManagerService schoolManagerService)
         {
-            Logger = logger;
-            SchoolManagerService = schoolManagerService;
+            _logger = logger;
+            _schoolManagerService = schoolManagerService;
         }
 
+        /// <summary>
+        /// Retrieve all students (async)
+        /// </summary>
+        /// <returns>A list of students</returns>
         [HttpGet("Get")]
-        public async Task<IActionResult> GetStudentsAsync()
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetStudentsAsync(int? pageSize = 10, int? pageNumber = 1)
         {
-            Logger?.LogDebug("{0} has been invoked", nameof(GetStudentsAsync));
-            var response = await SchoolManagerService.GetStudentsAsync();
+            _logger?.LogInformation("{0} has been invoked", nameof(GetStudentsAsync));
+            var response = await _schoolManagerService.GetStudentsAsync();
 
             return response.ToHttpResponse();
         }
@@ -31,17 +37,17 @@ namespace SchoolManager.API.Controllers
         [HttpGet("GetWithCourses")]
         public async Task<IActionResult> GetStudentsWithCoursesAsync()
         {
-            Logger?.LogDebug("{0} has been invoked", nameof(GetStudentsWithCoursesAsync));
-            var response = await SchoolManagerService.GetStudentsWithCoursesAsync();
+            _logger?.LogDebug("{0} has been invoked", nameof(GetStudentsWithCoursesAsync));
+            var response = await _schoolManagerService.GetStudentsWithCoursesAsync();
 
             return response.ToHttpResponse();
         }
 
-        [HttpGet("GetById")]
-        public async Task<IActionResult> GetStudentAsync(int id)
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetStudentByIdAsync(int id)
         {
-            Logger?.LogDebug("{0} has been invoked", nameof(GetStudentAsync));
-            var response = await SchoolManagerService.GetStudentAsync(id);
+            _logger?.LogDebug("{0} has been invoked", nameof(GetStudentByIdAsync));
+            var response = await _schoolManagerService.GetStudentAsync(id);
 
             return response.ToHttpResponse();
         }
